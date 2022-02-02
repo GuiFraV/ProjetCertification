@@ -29,10 +29,6 @@ class Article
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $abc;
 
     /**
      * @ORM\Column(type="float")

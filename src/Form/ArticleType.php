@@ -15,7 +15,6 @@ class ArticleType extends AbstractType
         $builder
             ->add('nom')
             ->add('description')
-            ->add('abc')
             ->add('prix')
             ->add('stock')
             ->add('categorie')
