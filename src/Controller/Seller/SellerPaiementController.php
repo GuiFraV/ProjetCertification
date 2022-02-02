@@ -4,7 +4,7 @@ namespace App\Controller\Seller;
 // Utilisation de l'entité Paiement pour la liste dans la BDD
 use App\Entity\Paiement;
 // Utilisation du modèle du formulaire pour la création de DetailCommande et la lister
-use App\Form\Paiement1Type;
+use App\Form\Seller\Paiement1Type;
 // Utilisation de PaiementRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\PaiementRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article

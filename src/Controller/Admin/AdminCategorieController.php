@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 // Utilisation de l'entité Categorie pour la liste dans la BDD
 use App\Entity\Categorie;
 // Utilisation du modèle du formulaire pour la création de categorie et la lister
-use App\Form\CategorieType;
+use App\Form\Admin\CategorieType;
 // Utilisation de CategorieRepository pour récupérer la liste et pour afficher les categories
 use App\Repository\CategorieRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article

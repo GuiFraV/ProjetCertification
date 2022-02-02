@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 // Utilisation de l'entité DetailCommande pour la liste dans la BDD
 use App\Entity\DetailCommande;
 // Utilisation du modèle du formulaire pour la création de DetailCommande et la lister
-use App\Form\DetailCommandeType;
+use App\Form\Admin\DetailCommandeType;
 // Utilisation de DetailCommandeRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\DetailCommandeRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article

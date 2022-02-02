@@ -4,7 +4,7 @@ namespace App\Controller\Seller;
 // Utilisation de l'entité Article pour la liste dans la BDD
 use App\Entity\Article;
 // Utilisation du modèle du formulaire pour la création d'article et la lister
-use App\Form\Article1Type;
+use App\Form\Seller\Article1Type;
 // Utilisation de FileUploader pour ajouter et afficher une image 
 use App\Service\FileUploader;
 // Utilisation d'ArticleRepository pour récupérer la liste et pour afficher le détail d'un article 
