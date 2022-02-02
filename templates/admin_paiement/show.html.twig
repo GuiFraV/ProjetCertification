@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+    <h1>Paiement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ paiement.id }}</td>
+            </tr>
+            <tr>
+                <th>Creation</th>
+                <td>{{ paiement.creation ? paiement.creation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_paiement_index') }}">back to list</a>
+
+    <a href="{{ path('admin_paiement_edit', {'id': paiement.id}) }}">edit</a>
+
+    {{ include('admin_paiement/_delete_form.html.twig') }}
+{% endblock %}

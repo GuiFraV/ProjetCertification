@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('user_profile_edit') }}">edit</a>
+    <a href="{{ path ('app_forgot_password_request') }}">Changer de mot de passe </a>
+
+
+{% endblock %}

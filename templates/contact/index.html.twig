@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<main class="container">
+
+    <h1 class="text-center">Page de Contact</h1>
+
+
+    {{form_start(formulaireContact)}}
+        {{form_row(formulaireContact.prenom)}}
+        {{form_row(formulaireContact.email)}}
+        {{form_row(formulaireContact.objet)}}
+        {{form_row(formulaireContact.texte)}}
+        {{form_row(formulaireContact.Envoyer, { 'attr' : {'class': 'btn-success'} })}}
+    {{form_end(formulaireContact)}}
+
+</main>
+
+{% endblock %}

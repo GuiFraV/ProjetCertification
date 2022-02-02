@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+		{% block head %}
+				<link rel="stylesheet" href="{{ asset ('css/catalog/show.css') }}"/>
+		{% endblock %}
+
+
+{% block title %}{{ article.nom }} - SummerField{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<div class="row product-show">
+    <div class="col-md-4 ">
+        <img class="w-100" src="{{ asset ('uploads/' ~ article.imageFileName)}} " alt="{{article.nom}}"/>
+    </div>
+    <div class="col-md-8">
+        <h2>{{ article.nom }}</h2>
+        <p>{{article.description}}</p>
+        <span class="product-price">{{ article.prix }} € </span>
+        <hr>
+        <a class="btn btn-primary" href="{{ path('cart_add', {'id': article.id}) }}">Ajouter au panier</a>
+        <a class="product-btn" href="{{ path('catalog_index') }}">Retourner au Catalogue</a>
+    </div>
+
+{% endblock %}
