@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Common;
 // Utilisation du modèle du formulaire pour la création de Contact et la lister
 use App\Form\ContactType;
 use App\Service\EmailService;

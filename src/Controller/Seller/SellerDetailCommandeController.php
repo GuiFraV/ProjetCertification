@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Seller;
 // Utilisation de l'entité DetailCommande pour la liste dans la BDD
 use App\Entity\DetailCommande;
 // Utilisation du modèle du formulaire pour la création de Detail1Commande et la lister

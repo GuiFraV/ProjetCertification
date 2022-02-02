@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Common;
 // Utilisation de l'abstract controller pour les méthodes qui sont héritées : par exemple, render, renderForm, createFrom etc.
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 // Utilisation du Response juste pour définir que les fonctions liées aux routes vont retournées une réponse au navigateur 

@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Admin;
 // Utilisation de l'entité Categorie pour la liste dans la BDD
 use App\Entity\Categorie;
 // Utilisation du modèle du formulaire pour la création de categorie et la lister

@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Admin;
 // Utilisation de l'entité Article pour la liste dans la BDD
 use App\Entity\Article;
 // Utilisation du modèle du formulaire pour la création d'article et la lister

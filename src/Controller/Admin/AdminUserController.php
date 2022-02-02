@@ -1,6 +1,6 @@
 <?php
 // Le dossier virtuel de la class de ce fichier
-namespace App\Controller;
+namespace App\Controller\Admin;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
 // Utilisation du modèle du formulaire pour la création de User et la lister
