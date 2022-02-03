@@ -30,7 +30,7 @@ class SellerPaiementController extends AbstractController
     {
         // Affiche la vue 'seller_paiement/index.html.twig' avec une variable TWIG 'paiements'
         // qui pointe vers la liste de toutes les paiements en base de données
-        return $this->render('seller_paiement/index.html.twig', [
+        return $this->render('Seller/seller_paiement/index.html.twig', [
             'paiements' => $paiementRepository->findAll(),
         ]);
     }
@@ -60,7 +60,7 @@ class SellerPaiementController extends AbstractController
         // Redirection du navigateur vers 'seller_paiement/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
 
-        return $this->renderForm('seller_paiement/new.html.twig', [
+        return $this->renderForm('Seller/seller_paiement/new.html.twig', [
             'paiement' => $paiement,
             'form' => $form,
         ]);
@@ -72,7 +72,7 @@ class SellerPaiementController extends AbstractController
     public function show(Paiement $paiement): Response
     {
         // Retourne la vue 'seller_paiement/show.html.twig" pour le paiement correspondant
-        return $this->render('seller_paiement/show.html.twig', [
+        return $this->render('Seller/seller_paiement/show.html.twig', [
             'paiement' => $paiement,
         ]);
     }
@@ -97,7 +97,7 @@ class SellerPaiementController extends AbstractController
         }
         // Redirection du navigateur vers 'seller_paiement/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('seller_paiement/edit.html.twig', [
+        return $this->renderForm('Seller/seller_paiement/edit.html.twig', [
             'paiement' => $paiement,
             'form' => $form,
         ]);

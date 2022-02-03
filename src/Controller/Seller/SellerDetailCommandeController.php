@@ -30,7 +30,7 @@ class SellerDetailCommandeController extends AbstractController
     {
         // Affiche la vue 'seller_detail_commande/index.html.twig' avec une variable TWIG 'detail_commandes'
         // qui pointe vers la liste de toutes les detailscommandes en base de données
-        return $this->render('seller_detail_commande/index.html.twig', [
+        return $this->render('Seller/seller_detail_commande/index.html.twig', [
             'detail_commandes' => $detailCommandeRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class SellerDetailCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'seller_detail_commande/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('seller_detail_commande/new.html.twig', [
+        return $this->renderForm('Seller/seller_detail_commande/new.html.twig', [
             'detail_commande' => $detailCommande,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class SellerDetailCommandeController extends AbstractController
     public function show(DetailCommande $detailCommande): Response
     {
         // Retourne la vue 'seller_detail_commande/show.html.twig" pour le detailCommande correspondant
-        return $this->render('seller_detail_commande/show.html.twig', [
+        return $this->render('Seller/seller_detail_commande/show.html.twig', [
             'detail_commande' => $detailCommande,
         ]);
     }
@@ -96,7 +96,7 @@ class SellerDetailCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'seller_detail_commande/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('seller_detail_commande/edit.html.twig', [
+        return $this->renderForm('Seller/seller_detail_commande/edit.html.twig', [
             'detail_commande' => $detailCommande,
             'form' => $form,
         ]);

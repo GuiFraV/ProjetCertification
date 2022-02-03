@@ -32,7 +32,7 @@ class SellerArticleController extends AbstractController
     {
         // Affiche la vue 'seller_article/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de tous les articles en base de données
-        return $this->render('seller_article/index.html.twig', [
+        return $this->render('Seller/seller_article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
     }
@@ -70,7 +70,7 @@ class SellerArticleController extends AbstractController
         }
         // Redirection du navigateur vers 'seller_article/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('seller_article/new.html.twig', [
+        return $this->renderForm('Seller/seller_article/new.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
@@ -82,7 +82,7 @@ class SellerArticleController extends AbstractController
     public function show(Article $article): Response
     {
         // Retourne la vue 'seller_article" pour l'article correspondant
-        return $this->render('seller_article/show.html.twig', [
+        return $this->render('Seller/seller_article/show.html.twig', [
             'article' => $article,
         ]);
     }
@@ -116,7 +116,7 @@ class SellerArticleController extends AbstractController
         }
         // Redirection du navigateur vers 'seller_article/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('seller_article/edit.html.twig', [
+        return $this->renderForm('Seller/seller_article/edit.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
