@@ -32,7 +32,7 @@ class AdminArticleController extends AbstractController
     {
         // Affiche la vue 'admin_article/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de tous les articles en base de données
-        return $this->render('admin_article/index.html.twig', [
+        return $this->render('Admin/admin_article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
     }
@@ -70,7 +70,7 @@ class AdminArticleController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_article/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_article/new.html.twig', [
+        return $this->renderForm('Admin/admin_article/new.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
@@ -82,7 +82,7 @@ class AdminArticleController extends AbstractController
     public function show(Article $article): Response
     {
         // Retourne la vue 'admin_article" pour l'article correspondant
-        return $this->render('admin_article/show.html.twig', [
+        return $this->render('Admin/admin_article/show.html.twig', [
             'article' => $article,
         ]);
     }
@@ -116,7 +116,7 @@ class AdminArticleController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_article/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_article/edit.html.twig', [
+        return $this->renderForm('Admin/admin_article/edit.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
