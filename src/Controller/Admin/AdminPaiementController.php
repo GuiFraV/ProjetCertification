@@ -30,7 +30,7 @@ class AdminPaiementController extends AbstractController
     {
         // Affiche la vue 'admin_paiement/index.html.twig' avec une variable TWIG 'commandes'
         // qui pointe vers la liste de toutes les commandes en base de données
-        return $this->render('admin_paiement/index.html.twig', [
+        return $this->render('Admin/admin_paiement/index.html.twig', [
             'paiements' => $paiementRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class AdminPaiementController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_paiement/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_paiement/new.html.twig', [
+        return $this->renderForm('Admin/admin_paiement/new.html.twig', [
             'paiement' => $paiement,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class AdminPaiementController extends AbstractController
     public function show(Paiement $paiement): Response
     {
         // Retourne la vue 'admin_paiement/show.html.twig" pour l'article correspondant
-        return $this->render('admin_paiement/show.html.twig', [
+        return $this->render('Admin/admin_paiement/show.html.twig', [
             'paiement' => $paiement,
         ]);
     }
@@ -96,7 +96,7 @@ class AdminPaiementController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_paiement/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_paiement/edit.html.twig', [
+        return $this->renderForm('Admin/admin_paiement/edit.html.twig', [
             'paiement' => $paiement,
             'form' => $form,
         ]);

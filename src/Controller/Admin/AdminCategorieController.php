@@ -30,7 +30,7 @@ class AdminCategorieController extends AbstractController
     {
         // Affiche la vue 'admin_categorie/index.html.twig' avec une variable TWIG 'categories'
         // qui pointe vers la liste de toutes les categories en base de données
-        return $this->render('admin_categorie/index.html.twig', [
+        return $this->render('Admin/admin_categorie/index.html.twig', [
             'categories' => $categorieRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class AdminCategorieController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_categorie/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_categorie/new.html.twig', [
+        return $this->renderForm('Admin/admin_categorie/new.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class AdminCategorieController extends AbstractController
     public function show(Categorie $categorie): Response
     {
         // Retourne la vue 'admin_article" pour l'article correspondant
-        return $this->render('admin_categorie/show.html.twig', [
+        return $this->render('Admin/admin_categorie/show.html.twig', [
             'categorie' => $categorie,
         ]);
     }
@@ -96,7 +96,7 @@ class AdminCategorieController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_categorie/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_categorie/edit.html.twig', [
+        return $this->renderForm('Admin/admin_categorie/edit.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
         ]);

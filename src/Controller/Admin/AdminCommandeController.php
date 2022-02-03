@@ -30,7 +30,7 @@ class AdminCommandeController extends AbstractController
     {
         // Affiche la vue 'admin_commande/index.html.twig' avec une variable TWIG 'commandes'
         // qui pointe vers la liste de toutes les commandes en base de données
-        return $this->render('admin_commande/index.html.twig', [
+        return $this->render('Admin/admin_commande/index.html.twig', [
             'commandes' => $commandeRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class AdminCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_commande/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_commande/new.html.twig', [
+        return $this->renderForm('Admin/admin_commande/new.html.twig', [
             'commande' => $commande,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class AdminCommandeController extends AbstractController
     public function show(Commande $commande): Response
     {
         // Retourne la vue 'admin_commande/show.html.twig" pour la commande correspondant
-        return $this->render('admin_commande/show.html.twig', [
+        return $this->render('Admin/admin_commande/show.html.twig', [
             'commande' => $commande,
         ]);
     }
@@ -96,7 +96,7 @@ class AdminCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_commande/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_commande/edit.html.twig', [
+        return $this->renderForm('Admin/admin_commande/edit.html.twig', [
             'commande' => $commande,
             'form' => $form,
         ]);

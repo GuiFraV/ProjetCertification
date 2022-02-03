@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
 // Utilisation du modèle du formulaire pour la création de User et la lister
-use App\Form\UserType;
+use App\Form\Admin\UserType;
 // Utilisation de UserRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\UserRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article
@@ -30,7 +30,7 @@ class AdminUserController extends AbstractController
     {
         // Affiche la vue 'admin_user/index.html.twig' avec une variable TWIG 'commandes'
         // qui pointe vers la liste de toutes les commandes en base de données
-        return $this->render('admin_user/index.html.twig', [
+        return $this->render('Admin/admin_user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class AdminUserController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_user/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_user/new.html.twig', [
+        return $this->renderForm('Admin/admin_user/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class AdminUserController extends AbstractController
     public function show(User $user): Response
     {
         // Retourne la vue 'admin_user/show.html.twig" pour l'article correspondant
-        return $this->render('admin_user/show.html.twig', [
+        return $this->render('Admin/admin_user/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -96,7 +96,7 @@ class AdminUserController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_user/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_user/edit.html.twig', [
+        return $this->renderForm('Admin/admin_user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

@@ -30,7 +30,7 @@ class AdminDetailCommandeController extends AbstractController
     {
         // Affiche la vue 'admin_detail_commande/index.html.twig' avec une variable TWIG 'commandes'
         // qui pointe vers la liste de toutes les commandes en base de données
-        return $this->render('admin_detail_commande/index.html.twig', [
+        return $this->render('Admin/admin_detail_commande/index.html.twig', [
             'detail_commandes' => $detailCommandeRepository->findAll(),
         ]);
     }
@@ -59,7 +59,7 @@ class AdminDetailCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_detail_commande/new.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_detail_commande/new.html.twig', [
+        return $this->renderForm('Admin/admin_detail_commande/new.html.twig', [
             'detail_commande' => $detailCommande,
             'form' => $form,
         ]);
@@ -71,7 +71,7 @@ class AdminDetailCommandeController extends AbstractController
     public function show(DetailCommande $detailCommande): Response
     {
         // Retourne la vue 'admin_detail_commande/show.html.twig" pour le detailcommande correspondant
-        return $this->render('admin_detail_commande/show.html.twig', [
+        return $this->render('Admin/admin_detail_commande/show.html.twig', [
             'detail_commande' => $detailCommande,
         ]);
     }
@@ -96,7 +96,7 @@ class AdminDetailCommandeController extends AbstractController
         }
         // Redirection du navigateur vers 'admin_detail_commande/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('admin_detail_commande/edit.html.twig', [
+        return $this->renderForm('Admin/admin_detail_commande/edit.html.twig', [
             'detail_commande' => $detailCommande,
             'form' => $form,
         ]);
