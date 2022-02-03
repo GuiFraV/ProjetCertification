@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         // Affiche la vue 'home/index.html.twig'
-        return $this->render('home/index.html.twig', [
+        return $this->render('Common/home/index.html.twig', [
         ]);
     }
 }

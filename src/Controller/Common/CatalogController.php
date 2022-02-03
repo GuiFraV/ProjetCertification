@@ -30,7 +30,7 @@ class CatalogController extends AbstractController
     {
         // Affiche la vue 'catalog/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de toutes les articles en base de données
-        return $this->render('catalog/index.html.twig', [
+        return $this->render('Common/catalog/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
     }
@@ -41,7 +41,7 @@ class CatalogController extends AbstractController
     public function show(Article $article): Response
     {
         // Retourne la vue 'catalog/show.html.twig" pour l'article correspondant
-        return $this->render('catalog/show.html.twig', [
+        return $this->render('Common/catalog/show.html.twig', [
             'article' => $article,
         ]);
     }

@@ -13,7 +13,7 @@ class CgvController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('cgv/index.html.twig', [
+        return $this->render('Common/cgv/index.html.twig', [
             'controller_name' => 'CgvController',
         ]);
     }

@@ -59,17 +59,17 @@ class ContactController extends AbstractController
             $emailService->envoyer(['html5' => $message],'emails/signout.html.twig',$email,$destinataire,$objet);
 
             // 2. Le mail d'accusé de réception de l'administrateur -> au visiteur
-            $emailService->envoyer((['to' => $email ]),'emails/signup.html.twig',$destinataire,$email,"Demande de contact avec succès");
+            $emailService->envoyer((['to' => $prenom ]),'emails/signup.html.twig',$destinataire,$email,"Demande de contact avec succès");
 
             // Redirection vers 'contact/success.html.twig' avec les variable TWIG prenom et email
-            return $this->render('contact/success.html.twig', [
+            return $this->render('Common/contact/success.html.twig', [
                 'prenom' => $prenom,
                 'email' => $email,
             ]);
 
         }else{
             // Sinon retourne la vue 'contact/index.html.twig' et affiche le formualire contenue dans la variable TWIG 'formulaireContact'
-            return $this->renderForm('contact/index.html.twig', [
+            return $this->renderForm('Common/contact/index.html.twig', [
                 'formulaireContact' => $form,
             ]);
 
