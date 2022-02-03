@@ -32,7 +32,7 @@ class ProfileController extends AbstractController
         // création d'une variable user de l'utilisateur connecté
         $user = $this->getUser();
         // Affiche la vue 'profile/show.html.twig' avec la variable TWIG 'user'
-        return $this->render('profile/show.html.twig', [
+        return $this->render('User/profile/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -59,7 +59,7 @@ class ProfileController extends AbstractController
         }
         // Redirection du navigateur vers 'profile/edit.html.twig' si des données n'ont pas été remplis correctement
         // Le return stop la fonction
-        return $this->renderForm('profile/edit.html.twig', [
+        return $this->renderForm('User/profile/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

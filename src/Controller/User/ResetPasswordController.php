@@ -3,7 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User;
-use App\Form\ChangePasswordFormType;
+use App\Form\User\ChangePasswordFormType;
 use App\Form\User\ResetPasswordRequestFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -52,7 +52,7 @@ class ResetPasswordController extends AbstractController
             );
         }
 
-        return $this->render('reset_password/request.html.twig', [
+        return $this->render('User/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
         ]);
     }
@@ -70,7 +70,7 @@ class ResetPasswordController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
-        return $this->render('reset_password/check_email.html.twig', [
+        return $this->render('User/reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
         ]);
     }
@@ -129,7 +129,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('reset_password/reset.html.twig', [
+        return $this->render('User/reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }

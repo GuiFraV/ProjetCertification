@@ -114,6 +114,14 @@
 						</li>
 
 					{% endif %}
+
+					{% if is_granted('ROLE_SELLER') or is_granted('ROLE_ADMIN') %}
+
+								<li>
+									<a class="dropdown-item" href="/profile"> Profil</a>
+								</li>
+
+					{% endif %}
 				</ul>
 			</div>
 		</nav>
