@@ -4,7 +4,7 @@ namespace App\Controller\User;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
 // Utilisation du modèle du formulaire pour la création de User et la lister
-use App\Form\User1Type;
+use App\Form\Seller\User1Type;
 // Utilisation de UserRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\UserRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article

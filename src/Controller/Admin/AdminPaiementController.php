@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 // Utilisation de l'entité Paiement pour la liste dans la BDD
 use App\Entity\Paiement;
 // Utilisation du modèle du formulaire pour la création de Paiement et la lister
-use App\Form\PaiementType;
+use App\Form\Admin\PaiementType;
 // Utilisation de PaiementRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\PaiementRepository;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article

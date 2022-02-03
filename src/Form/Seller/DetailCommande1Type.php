@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Seller;
 
 use App\Entity\DetailCommande;
 use Symfony\Component\Form\AbstractType;

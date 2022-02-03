@@ -4,7 +4,7 @@ namespace App\Controller\Common;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
 // Utilisation du modèle du formulaire pour la création de User et la lister
-use App\Form\RegistrationFormType;
+use App\Form\Common\RegistrationFormType;
 use App\Security\UserAuthenticator;
 // Utilisation de l'EntityManager pour créer, supprimer et modifier un article
 use Doctrine\ORM\EntityManagerInterface;
