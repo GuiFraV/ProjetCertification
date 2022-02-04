@@ -11,7 +11,7 @@ class CartService
 {
     private $sessionInterface;
 
-    // Injection de dépendance pour faire fonctionner le pannier 
+    // Injection de dépendance pour faire fonctionner le panier 
     public function __construct(SessionInterface $sessionInterface){
 
         $this->sessionInterface = $sessionInterface;

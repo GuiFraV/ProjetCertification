@@ -50,4 +50,14 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');
     }
 
+    /**
+     * @Route("/cart/clearall/", name="cart_clearall")
+     */
+    public function clearAll(CartService $cartService): Response
+    {
+        $cartService->clear();
+        return $this->redirectToRoute('cart_index');
+
+    }
+
 }
