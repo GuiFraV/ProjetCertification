@@ -20,6 +20,7 @@ body{
     margin-right: auto;
     height: 2500px;
     background-color: aliceblue;
+    position: relative;
 }
 
 h1 {
@@ -31,3 +32,9 @@ a:link
  text-decoration:none; 
 } 
 
+footer{
+    position: absolute;
+    bottom: 0;
+    border: 2px solid red;
+    width: 100%;
+}

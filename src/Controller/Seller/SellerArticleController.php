@@ -33,7 +33,9 @@ class SellerArticleController extends AbstractController
         // Affiche la vue 'seller_article/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de tous les articles en base de données
         return $this->render('Seller/seller_article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articleRepository->findBy([
+                'auteur' => $this->getUser()
+            ]),
         ]);
     }
 
@@ -60,6 +62,7 @@ class SellerArticleController extends AbstractController
                 // Envoi de l'image dans l'objet article dans la BDD
                 $article->setImageFilename($imageFileName);
             }
+            $article->setAuteur($this->getUser());
             // L'entityManager sauvegarde les données contenu dans $article en BDD
             $entityManager->persist($article);
             // L'entityManager valide les décisions de sauvegardes
@@ -79,12 +82,16 @@ class SellerArticleController extends AbstractController
     /**
      * @Route("/{id}", name="seller_article_show", methods={"GET"})
      */
-    public function show(Article $article): Response
+    public function show(Article $article, Request $request): Response
     {
+        if($article->getAuteur() == $this->getUser()){
         // Retourne la vue 'seller_article" pour l'article correspondant
-        return $this->render('Seller/seller_article/show.html.twig', [
-            'article' => $article,
-        ]);
+            return $this->render('Seller/seller_article/show.html.twig', [
+                'article' => $article,
+            ]);
+        }else{
+            return $this->redirectToRoute('seller_article_index');
+        }
     }
 
     /**

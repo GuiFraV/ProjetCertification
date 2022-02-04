@@ -39,6 +39,11 @@ class Commande
      */
     private $detailCommandes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=PaymentRequest::class, mappedBy="fromOrder", cascade={"persist", "remove"})
+     */
+    private $paymentRequest;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -111,6 +116,28 @@ class Commande
                 $detailCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPaymentRequest(): ?PaymentRequest
+    {
+        return $this->paymentRequest;
+    }
+
+    public function setPaymentRequest(?PaymentRequest $paymentRequest): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($paymentRequest === null && $this->paymentRequest !== null) {
+            $this->paymentRequest->setFromOrder(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($paymentRequest !== null && $paymentRequest->getFromOrder() !== $this) {
+            $paymentRequest->setFromOrder($this);
+        }
+
+        $this->paymentRequest = $paymentRequest;
 
         return $this;
     }
