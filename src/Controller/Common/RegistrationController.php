@@ -49,6 +49,7 @@ class RegistrationController extends AbstractController
             if ($role == 'ROLE_SELLER'){
                 // Alors tu lui donne comme rôle "ROLE_SELLER"
                 $user->setRoles(array ("ROLE_SELLER"));
+               
 
             } 
 

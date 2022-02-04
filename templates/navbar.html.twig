@@ -6,19 +6,27 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav mr-auto ">
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('home') }}">Accueil</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('contact') }}">Contact</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
-					</li>
+				
+
+					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) == false %}
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
+						</li>
+
+					{% endif %}
+
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('catalog_index') }}">Catalogue</a>
 					</li>
@@ -26,46 +34,45 @@
 						<a class="nav-link" href="{{ path ('cart_index') }}">Panier</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path  ('app_logout') }}">Logout</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('cgv') }}">CGU/CGV</a>
 					</li>
+
+
+					{# L'espace Administrateur #}
 					{% if is_granted('ROLE_ADMIN') %}
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-							Espace Administrateur
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-							<li>
-								<a class="dropdown-item" href="/admin/article">Gestion Articles</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/categorie">Gestion Catégorie</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/commande">Gestion Commande </a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/paiement">Gestion Paiement</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/detail/commande"> Détails Commandes</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/paiement"> Détails Paiements</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="/admin/user">Gestion Utilisateur</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href={{path ('admin_payment_request_index')}}>Gestion des Paiements</a>
-							</li>
-						</ul>
-					</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+								Espace Administrateur
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+								<li>
+									<a class="dropdown-item" href="/admin/article">Gestion Articles</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/admin/categorie">Gestion Catégorie</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/admin/commande">Gestion Commande </a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/admin/detail/commande"> Détails Commandes</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/admin/paiement"> Détails Paiements</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/admin/user">Gestion Utilisateur</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href={{path ('admin_payment_request_index')}}>Gestion Paiements</a>
+								</li>
+							</ul>
+						</li>
+
 					{% endif %}
 
+					{# Espace Vendeur #}
 					{% if is_granted('ROLE_SELLER') %}
 
 						<li class="nav-item dropdown">
@@ -80,13 +87,10 @@
 									<a class="dropdown-item" href="/seller/detail/commande">Gestion Commande </a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="/seller/paiement">Gestion Paiement</a>
-								</li>
-								<li>
 									<a class="dropdown-item" href="/seller/detail/commande"> Détails Commande</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="/seller/paiement"> Détails Paiements</a>
+									<a class="dropdown-item" href={{path ('seller_payment_request_index')}}>Détails Paiements</a>
 								</li>
 							
 							</ul>
@@ -96,11 +100,15 @@
 
 					{% if is_granted('ROLE_SELLER') or is_granted('ROLE_ADMIN') %}
 
-								<li>
-									<a class="dropdown-item" href="/profile"> Profil</a>
-								</li>
-
+						<li class="nav-item">
+							<a class="nav-link" href="/profile"> Profil</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path  ('app_logout') }}">Logout</a>
+						</li>
+					
 					{% endif %}
+
 				</ul>
 			</div>
 		</nav>

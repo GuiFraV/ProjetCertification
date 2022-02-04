@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\PaymentRequest;
-use App\Form\PaymentRequestType;
+use App\Form\Admin\PaymentRequestType;
 use App\Repository\PaymentRequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,7 +21,7 @@ class AdminPaymentRequestController extends AbstractController
      */
     public function index(PaymentRequestRepository $paymentRequestRepository): Response
     {
-        return $this->render('admin_payment_request/index.html.twig', [
+        return $this->render('Admin/admin_payment_request/index.html.twig', [
             'payment_requests' => $paymentRequestRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class AdminPaymentRequestController extends AbstractController
             return $this->redirectToRoute('admin_payment_request_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_payment_request/new.html.twig', [
+        return $this->renderForm('Admin/admin_payment_request/new.html.twig', [
             'payment_request' => $paymentRequest,
             'form' => $form,
         ]);
@@ -53,31 +53,10 @@ class AdminPaymentRequestController extends AbstractController
      */
     public function show(PaymentRequest $paymentRequest): Response
     {
-        return $this->render('admin_payment_request/show.html.twig', [
+        return $this->render('Admin/admin_payment_request/show.html.twig', [
             'payment_request' => $paymentRequest,
         ]);
     }
-
-    /**
-     * @Route("/{id}/edit", name="admin_payment_request_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, PaymentRequest $paymentRequest, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(PaymentRequestType::class, $paymentRequest);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_payment_request_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin_payment_request/edit.html.twig', [
-            'payment_request' => $paymentRequest,
-            'form' => $form,
-        ]);
-    }
-
     /**
      * @Route("/{id}", name="admin_payment_request_delete", methods={"POST"})
      */

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Seller;
 
 use App\Entity\PaymentRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PaymentRequestType extends AbstractType
+class PaymentRequest1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

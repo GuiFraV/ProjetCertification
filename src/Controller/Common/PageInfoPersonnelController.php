@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Common;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +13,6 @@ class PageInfoPersonnelController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('page_info_personnel/index.html.twig', [
-            'controller_name' => 'PageInfoPersonnelController',
-        ]);
+        return $this->render('Common/page_info_personnel/index.html.twig');
     }
 }

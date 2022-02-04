@@ -32,6 +32,11 @@ a:link
  text-decoration:none; 
 } 
 
+.items-right{
+    border: 2px solid rebeccapurple;
+    margin-right: 0;
+}
+
 footer{
     position: absolute;
     bottom: 0;
