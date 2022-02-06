@@ -20,6 +20,7 @@ class CartController extends AbstractController
             'controller_name' => 'CartController',
             'cart' => $cart
         ]);
+
     }
 
     /**

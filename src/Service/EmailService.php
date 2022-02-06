@@ -18,7 +18,7 @@ class EmailService {
         // Qui est l'objet Email Service) dénommé $this.
         $this->coeur = $mailer;
     }
-    // METHODE : le but est de faire quelque chose et dy retourner un résultat  (sauf void)
+    // METHODE : le but est de faire quelque chose et de retourner un résultat  (sauf void)
     // Comportement
     public function envoyer(array $table,string $vue,string $from,string $destination, string $objet): void {
 
