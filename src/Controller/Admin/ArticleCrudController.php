@@ -27,7 +27,9 @@ class ArticleCrudController extends AbstractCrudController
             MoneyField::new('prix')->setCurrency('EUR')->setCustomOption('storedAsCents', false),
             IntegerField::new('stock'),
             AssociationField::new('categorie'),
-            ImageField::new('Image'),
+            ImageField::new('imageFilename')->setUploadDir('public/uploads'),
+            AssociationField::new('auteur'),
+
 
         ];
     }

@@ -31,7 +31,7 @@ class PaymentService
                 'amount' => $element['article']->getPrix() * 100,
                 'quantity' => $element['quantity'],
                 'currency' => 'eur',
-                'name' => $element['article']->getId()
+                'name' => $element['article']->getNom()
             ];
         }
 

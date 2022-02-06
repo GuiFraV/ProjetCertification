@@ -60,6 +60,11 @@ class Article
      */
     private $auteur;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();

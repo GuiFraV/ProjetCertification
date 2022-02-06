@@ -52,6 +52,8 @@ class PaymentController extends AbstractController
         $paymentRequest->setPaidAt(new DateTime());
 
         $entityManager = $this->getDoctrine()->getManager();
+        $cart = $cartService->get();
+        dd($cart);
         $entityManager->flush();
 
         $cartService->clear();

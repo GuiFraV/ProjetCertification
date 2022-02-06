@@ -49,6 +49,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $articles;
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
