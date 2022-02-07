@@ -45,7 +45,7 @@ class Commande
     private $paymentRequest;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $fournisseur;
 
@@ -149,12 +149,12 @@ class Commande
         return $this;
     }
 
-    public function getFournisseur(): ?string
+    public function getFournisseur(): ?int
     {
         return $this->fournisseur;
     }
 
-    public function setFournisseur(string $fournisseur): self
+    public function setFournisseur(int $fournisseur): self
     {
         $this->fournisseur = $fournisseur;
 

@@ -2,11 +2,16 @@
 
 namespace App\Controller\User;
 
-use App\Entity\PaymentRequest;
-use App\Repository\PaymentRequestRepository;
-use App\Service\CartService;
-use App\Service\PaymentService;
 use DateTime;
+use App\Entity\Commande;
+use App\Service\CartService;
+use App\Entity\DetailCommande;
+use App\Entity\PaymentRequest;
+use App\Service\PaymentService;
+use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\FournisseurRepository;
+use App\Repository\PaymentRequestRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,7 +42,7 @@ class PaymentController extends AbstractController
     /**
      * @Route("/payment/success/{stripeSessionId}", name="payment_success")
      */
-    public function success(string $stripeSessionId, PaymentRequestRepository $paymentRequestRepository, CartService $cartService): Response
+    public function success(string $stripeSessionId, PaymentRequestRepository $paymentRequestRepository, CartService $cartService, ArticleRepository $ar, EntityManagerInterface $em): Response
     {
 
         $paymentRequest = $paymentRequestRepository->findOneBy([
@@ -53,7 +58,39 @@ class PaymentController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $cart = $cartService->get();
-        dd($cart);
+
+        foreach ($cart['elements'] as $element) {
+            $fournisseurId = $element['article']->getAuteur()->getId();
+            if (!isset($panierParFournisseur[$fournisseurId])) {
+                $panierParFournisseur[$fournisseurId] = []; // on crée $panierParFournisseur[$fournisseurId]
+            }
+    
+            $panierParFournisseur[$fournisseurId][] = $element; // on ajoute $element à $panierParFournisseur[$fournisseurId]
+        }
+    
+        foreach ($panierParFournisseur as $fournisseurId => $elements) {
+
+            $commande = new Commande();
+            $commande->setFournisseur($element['article']->getAuteur()->getId());
+            $commande->setReference(strval(rand(0, 9999999)));
+            $commande->setCreation(new DateTime());
+            $commande->setAcheteur($this->getUser());
+    
+            $em->persist($commande);
+    
+            foreach ($elements as $element) {
+                $articleId = $element['article']->getId();
+                $quantity = $element['quantity'];
+    
+                $detail = new DetailCommande();
+                $detail->setArticle($ar->find($articleId));
+                $detail->setQuantity($quantity);
+                $detail->setCommande($commande);
+    
+                $em->persist($detail);
+            }
+        }
+
         $entityManager->flush();
 
         $cartService->clear();
