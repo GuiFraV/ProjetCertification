@@ -29,7 +29,9 @@ class CartController extends AbstractController
     public function add(CartService $cartService, Article $article): Response
     {
         $cartService->add($article);
+        // dd($article);
         return $this->redirectToRoute('cart_index');
+        
     }
 
     /**
@@ -48,7 +50,9 @@ class CartController extends AbstractController
     public function clear(CartService $cartService): Response
     {
         $cartService->clear();
+        dd($cartService);
         return $this->redirectToRoute('cart_index');
+        
     }
 
     /**
