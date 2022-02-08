@@ -2,6 +2,7 @@
 
 namespace App\Controller\User;
 
+use App\Entity\Article;
 use DateTime;
 use App\Entity\Commande;
 use App\Service\CartService;
@@ -86,10 +87,36 @@ class PaymentController extends AbstractController
                 $detail->setArticle($ar->find($articleId));
                 $detail->setQuantity($quantity);
                 $detail->setCommande($commande);
-    
                 $em->persist($detail);
             }
+
+                    
+                $art = $element['article']->getStock();
+
+                $article =  $ar->find($articleId);
+
+                $article->setStock($art - $quantity);
+                
+                // dd($article);
+
+                $em->persist($article);
+
+
         }
+
+
+        
+        // dd($article);
+
+        // $em->persist($art);
+
+        // $bla = $element['article']->getDetailCommandes();
+
+
+
+
+      
+       
 
         $entityManager->flush();
 
