@@ -98,7 +98,7 @@
 
 					{% endif %}
 
-					{% if is_granted('ROLE_SELLER') or is_granted('ROLE_ADMIN') %}
+					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) %}
 
 						<li class="nav-item">
 							<a class="nav-link" href="/profile"> Profil</a>
