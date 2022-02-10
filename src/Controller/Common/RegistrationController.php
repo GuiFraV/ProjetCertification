@@ -3,6 +3,16 @@
 namespace App\Controller\Common;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+
+use Symfony\Component\Mime\Address;
+
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+
+use App\Service\EmailVerificationService;
+
 // Utilisation du modèle du formulaire pour la création de User et la lister
 use App\Form\Common\RegistrationFormType;
 use App\Security\UserAuthenticator;
@@ -18,10 +28,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 // Utilisation du Route comme annotation pour rendre accessible une focntion par un client (ex: navigateur)
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+
+    private EmailVerificationService $emailVerifier;
+
+    public function __construct(EmailVerificationService $emailVerifier)
+    {
+        $this->emailVerifier = $emailVerifier;
+    }
+
     /**
      * @Route("/register", name="app_register")
      */
@@ -48,17 +65,25 @@ class RegistrationController extends AbstractController
             // Condition si le role est strictement égale à "ROLE_SELLER"
             if ($role == 'ROLE_SELLER'){
                 // Alors tu lui donne comme rôle "ROLE_SELLER"
-                $user->setRoles(array ("ROLE_SELLER"));
-               
+                $user->setRoles(array ("ROLE_SELLER"));  
 
             } 
-
 
             // L'entityManager sauvegarde les données contenu dans $user en BDD
             $entityManager->persist($user);
             // L'entityManager valide les décisions de sauvegardes
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                // Création du modèle de l'e-mail de confirmation.
+                (new TemplatedEmail())
+                    ->from(new Address('ton@gmail.com', 'ton site'))
+                    ->to($user->getEmail())
+                    ->subject('Veuillez confirmer votre adresse e-mail')
+                    ->htmlTemplate('emails/confirm.html.twig')
+            );
+            
 
             return $userAuthenticator->authenticateUser(
                 $user,
@@ -70,5 +95,28 @@ class RegistrationController extends AbstractController
         return $this->render('Common/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/verify/email", name="app_verify_email")
+     */
+    public function verifyUserEmail(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+
+        } catch (VerifyEmailExceptionInterface $exception) {
+
+            $this->addFlash('error', $exception->getReason());
+
+            return $this->redirectToRoute('app_register');
+        }
+
+        $this->addFlash('success', 'Votre adresse e-mail a bien été vérifiée !');
+
+        return $this->redirectToRoute('home');
     }
 }

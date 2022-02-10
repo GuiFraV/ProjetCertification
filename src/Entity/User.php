@@ -49,6 +49,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $IsVerified=false;
+
     public function __toString()
     {
         return $this->email;
@@ -205,6 +210,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setAuteur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->IsVerified;
+    }
+
+    public function setIsVerified(bool $IsVerified): self
+    {
+        $this->IsVerified = $IsVerified;
 
         return $this;
     }
