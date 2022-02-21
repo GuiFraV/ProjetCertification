@@ -60,6 +60,11 @@ class Article
      */
     private $auteur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBest;
+
     public function __toString()
     {
         return $this->nom;
@@ -197,6 +202,18 @@ class Article
     public function setAuteur(?User $auteur): self
     {
         $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    public function getIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): self
+    {
+        $this->isBest = $isBest;
 
         return $this;
     }

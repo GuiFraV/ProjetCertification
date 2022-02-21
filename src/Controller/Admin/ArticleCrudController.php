@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -28,6 +29,7 @@ class ArticleCrudController extends AbstractCrudController
             IntegerField::new('stock'),
             AssociationField::new('categorie'),
             ImageField::new('imageFilename')->setUploadDir('public/uploads'),
+            BooleanField::new('isBest'),
             AssociationField::new('auteur'),
 
 

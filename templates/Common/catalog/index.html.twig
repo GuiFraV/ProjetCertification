@@ -1,49 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block head %}
-	<link rel="stylesheet" href="{{ asset ('css/catalog/index.css') }}"/>
-{% endblock %}
+{% block title %}Produits - SummerField{% endblock %}
 
-{% block title %}Produits - SummerField
-{% endblock %}
-
-{% block body %}
-
-
+{% block content %}
 	<div class="row">
-
 		<div class="col-md-3">
 			<h1>Filtrer mes produits</h1>
-            Colonne de filtre
+			Colonne de filtre
 		</div>
-
 		<div class="col-md-9">
+			<h1>Nos Produits :</h1>
 
-
-				<h1>Nos Produits :</h1>
-
-                <div class="row">
-					{% for article in articles %}
-
-						<div class="col-md-4">
-							<div class="product-item text-center">
-								<a href="{{ path ('catalog_show', {'id': article.id}) }}"><img class="w-100" src="{{ asset ('uploads/' ~ article.imageFileName)}} " alt="{{article.nom}}"/></a>
-								<h4>{{article.nom}}</h4>
-								<span class="product-description">{{article.description}}</span>
-								<span class="product-price">{{ article.prix }}
-									€
-								</span>
-								<span class="product-btn">
-									<a href="{{ path('cart_add', {'id': article.id}) }}">Achat</a>
-								</span>
-							</div>
-						</div>
-
-					{% endfor %}
-                </div>
+			<div class="row">
+				{% for article in articles %}
+					<div class="col-md-4">
+						{% include 'Common/home/product.html.twig' %}
+					</div>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
-
-
-
 {% endblock %}

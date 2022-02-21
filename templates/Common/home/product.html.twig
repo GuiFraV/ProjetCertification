@@ -1,0 +1,9 @@
+<div class="product-item text-center">
+	<a href="{{ path ('catalog_show', {'id': article.id}) }}"><img class="w-100" src="{{ asset ('uploads/' ~ article.imageFileName)}} " alt="{{article.nom}}"/></a>
+	<h4>{{article.nom}}</h4>
+	<span class="product-description">{{article.description}}</span>
+	<span class="product-price">{{ article.prix }}€</span>
+	<span class="product-btn">
+		<a href="{{ path('cart_add', {'id': article.id}) }}">Achat</a>
+	</span>
+</div>
