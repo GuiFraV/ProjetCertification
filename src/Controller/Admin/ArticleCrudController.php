@@ -25,6 +25,7 @@ class ArticleCrudController extends AbstractCrudController
         return [
             TextField::new('nom'),
             TextareaField::new('description'),
+            TextareaField::new('Informations'),
             MoneyField::new('prix')->setCurrency('EUR')->setCustomOption('storedAsCents', false),
             IntegerField::new('stock'),
             AssociationField::new('categorie'),

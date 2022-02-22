@@ -2,15 +2,16 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Article;
-use App\Entity\Categorie;
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
+use App\Entity\Article;
+use App\Entity\Carousel;
+use App\Entity\Categorie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -35,5 +36,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-seedling', Categorie::class);
         yield MenuItem::linkToCrud('Articles', 'fas fa-pepper-hot', Article::class);
+        yield MenuItem::linkToCrud('Carrousel', 'fas fa-desktop', Carousel::class);
     }
 }

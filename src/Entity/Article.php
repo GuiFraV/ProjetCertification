@@ -65,6 +65,11 @@ class Article
      */
     private $isBest;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $Informations;
+
     public function __toString()
     {
         return $this->nom;
@@ -214,6 +219,18 @@ class Article
     public function setIsBest(bool $isBest): self
     {
         $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    public function getInformations(): ?string
+    {
+        return $this->Informations;
+    }
+
+    public function setInformations(?string $Informations): self
+    {
+        $this->Informations = $Informations;
 
         return $this;
     }

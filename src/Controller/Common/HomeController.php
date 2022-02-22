@@ -4,6 +4,8 @@ namespace App\Controller\Common;
 // Utilisation de l'abstract controller pour les méthodes qui sont héritées : par exemple, render, renderForm, createFrom etc.
 
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Carousel;
+
 
 use App\Entity\Commande;
 
@@ -33,12 +35,14 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $products = $this->entityManager->getRepository(Article::class)->findByisBest(1);
+        $carousel = $this->entityManager->getRepository(Carousel::class)->findAll();
 
         // dd($products);
 
         // Affiche la vue 'home/index.html.twig'
         return $this->render('Common/home/index.html.twig', [
             'articles' => $products,
+            'carousel' => $carousel
         ]);
     }
 }

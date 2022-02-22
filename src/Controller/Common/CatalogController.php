@@ -23,6 +23,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CatalogController extends AbstractController
 {
+     
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManagerInterface)
+    {
+        $this->entityManager = $entityManagerInterface;
+    }
+
     /**
      * @Route("/", name="catalog_index", methods={"GET"})
      */
@@ -40,9 +48,12 @@ class CatalogController extends AbstractController
      */
     public function show(Article $article): Response
     {
+        $products = $this->entityManager->getRepository(Article::class)->findByisBest(1);
+
         // Retourne la vue 'catalog/show.html.twig" pour l'article correspondant
         return $this->render('Common/catalog/show.html.twig', [
             'article' => $article,
+            'articles' => $products
         ]);
     }
 

@@ -11,17 +11,35 @@
 
 <div class="container">
 
-<div class="row product-show">
-    <div class="col-md-4 ">
-        <img class="w-100" src="{{ asset ('uploads/' ~ article.imageFileName)}} " alt="{{article.nom}}"/>
+    <div class="row product-show">
+        <div class="col-md-4 ">
+            <img class="w-100" src="{{ asset ('uploads/' ~ article.imageFileName)}} " alt="{{article.nom}}"/>
+        </div>
+        <div class="col-md-7 my-auto">
+            <h3>{{ article.nom }}</h3>
+            <p>{{article.description}}</p>
+            <span class="product-price">{{ article.prix }} € </span>
+            <hr>
+            <p>{{article.informations}}</p>
+            <a class="btn btn-success" style="width: 100%;" href="{{ path('cart_add', {'id': article.id}) }}">Ajouter au panier</a>
+            <br/><br/>
+            <a class="btn btn-outline-warning" style="width: 100%;" href="{{ path('catalog_index') }}">Retourner au Catalogue</a>
+        </div>
     </div>
-    <div class="col-md-8">
-        <h2>{{ article.nom }}</h2>
-        <p>{{article.description}}</p>
-        <span class="product-price">{{ article.prix }} € </span>
-        <hr>
-        <a class="btn btn-primary" href="{{ path('cart_add', {'id': article.id}) }}">Ajouter au panier</a>
-        <a class="product-btn" href="{{ path('catalog_index') }}">Retourner au Catalogue</a>
-    </div>
+    </br>
+    <hr>
+
+    
+	<h3>Nos meilleurs ventes</h3>
+	<p>Découvrez les articles les plus vendus.</p>
+
+	<div class="row">
+		{% for article in articles %}
+			<div class="col-md-3">
+                {% include 'Common/home/product.html.twig' %}
+            </div>
+		{% endfor %}
+	</div>
+</div>
 
 {% endblock %}
