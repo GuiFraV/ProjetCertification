@@ -2,47 +2,105 @@
 
 {% block body %}
 
-    {% if cart.elements %}
+	{% if cart.elements %}
 
-    <div>
-        Total du panier : {{ cart.total }}
-    </div>
+	<div class="container">
+		<br>
+		<h3>Mon Panier</h3>
+		Retrouvez l'ensemble des produits que vous avez ajouté à votre panier.
+		<br>
+		<br>
 
-        <table>
-            <tr>    
-                <th>Nom de l'article</th>
-                <th>Quantité</th>
-                <th>Prix</th>
-            </tr>
+		{# <table>
+			<tr>
+				<th>Nom de l'article</th>
+				<th>Quantité</th>
+				<th>Prix</th>
+			</tr>
 
-            {% for element in cart.elements %}
-                <tr>
-                    <td>{{ element.article.nom }}</td>
-                    <td>
-                        <a href="{{ path ('cart_remove',{'id': element.article.id} ) }}">
-                            <i class="fas fa-minus"></i>
-                        </a>
-                            {{ element.quantity }}
-                        <a href="{{ path ('cart_add',{'id': element.article.id}) }}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </td>
-                    <td>{{ element.article.prix }}
-                    <a href="{{ path ('cart_clear',{'id': element.article.id}) }}">
-                        <i class="fas fa-recycle"></i>
-                    </a>
-                    </td>
-                </tr>
-            {% endfor %}
+			{% for element in cart.elements %}
+				<tr>
+					<td>{{ element.article.nom }}</td>
+					<td>
+						<a href="{{ path ('cart_remove',{'id': element.article.id} ) }}">
+							<i class="fas fa-minus"></i>
+						</a>
+						{{ element.quantity }}
+						<a href="{{ path ('cart_add',{'id': element.article.id}) }}">
+							<i class="fas fa-plus"></i>
+						</a>
+					</td>
+					<td>{{ element.article.prix }}
+						<a href="{{ path ('cart_clear',{'id': element.article.id}) }}">
+							<i class="fas fa-recycle"></i>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
 
-        </table>
-     
-            <span class="product-btn"><a href="{{ path ('payment_index')}}">Achat</a></span>
-            <span class="product-btn"><a href="{{ path ('cart_clearall')}}">Vider le panier</a></span>
+		</table>
 
+      #}
 
-    {% endif %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produit</th>
+                            <th scope="col"></th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
 
+                    <tbody>
+
+                		{% for element in cart.elements %}
+
+							<tr>
+								<th scope="row">
+									<img class="imgcart" src="{{ asset ('uploads/' ~ element.article.imageFileName)}} " alt="{{element.article.nom}}"/>
+								</th>
+                            	<th>
+									{{ element.article.description }}<br>
+									<small>{{ element.article.informations }}</small>
+								</th>
+								<td>{{ element.quantity }}</td>
+								<td>{{ element.article.prix }} €</td>
+								<td>{{ element.article.prix * element.quantity }}</td>
+							</tr>
+
+							{% set total = element.quantity  %}
+
+							
+
+						{% endfor %}
+
+                    </tbody>
+
+                </table>
+
+				<div class="text-right mb-5">
+					<b>Total du panier : {{ cart.total }} €</b><br>
+					<b>Nombre de produits : .. </b>
+				</div>
+                
+               
+
+		<span>
+			<a class="btn btn-success btn-block mt-3" href="{{ path ('payment_index')}}">Valider mon panier</a>
+		</span>
+		<br>
+		<span>
+		    <a class="btn btn-outline-warning" style="width: 100%;" href="{{ path ('cart_clearall')}}">Vider le panier</a>
+		</span>
+		<br>
+
+	</div>
+
+	{% endif %}
 
 
 {% endblock %}

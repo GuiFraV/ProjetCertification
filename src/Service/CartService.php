@@ -16,14 +16,13 @@ class CartService
 
         $this->sessionInterface = $sessionInterface;
 
-
     }
 
     public function get() {
         // recherche dans la session interface le panier 'cart'
         return $this->sessionInterface->get('cart',[
             'elements' => [],
-            'total' => 0.0
+            'total' => 0.0,
         ]);
     }
 
