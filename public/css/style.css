@@ -238,11 +238,22 @@ footer{
     font-size: 1.2vw;
 }
 
+.product-item{
+    overflow: hidden;
+}
+
 .product-item img{
     width: 30px;
     height: 250px;
     object-fit: cover;
     margin-top: 25px;
+    transition: transform .5s ease;
+}
+
+.product-item img:hover{
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari 3-8 */
+    transform: scale(1.5);
 }
 
 .product-btn {
@@ -254,14 +265,13 @@ footer{
     color: white;
 }
 
+
+
 /* Bouton */
 
 /* Cart */
 
 .imgcart{
     width: 75px;
-    /* height:75px; */
-    border: 3px solid red;
-    background-position: center;
-    background-size: cover;
+    height:75px;
 }

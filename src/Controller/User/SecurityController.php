@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         // Variable qui permet de sécuriser le login lorsque celui-ci trouve une correspondance
         $lastUsername = $authenticationUtils->getLastUsername();
+
         // Affiche la vue 'security/login.html.twig' avec la variable $lastUsername en cas de connexion et la variable $error en cas d'erreur de login. 
         return $this->render('User/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }

@@ -24,6 +24,7 @@ class PaymentController extends AbstractController
      */
     public function index(PaymentService $paymentService): Response
     {
+        
         // 1.Création d'une session chez Stripe
         $sessionId = $paymentService->create();
         // 2.Créer un objet à partir du Payment Request en précisant la date et la session chez stripe
