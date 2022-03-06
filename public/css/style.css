@@ -22,18 +22,6 @@ body{
 }
 
 /* Carroussel */
-
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
-body {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    color: #5a5a5a;
-}
-
-
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -208,8 +196,8 @@ a:link
 
 footer{
     position: absolute;
-    bottom: 0;
-    border: 2px solid red;
+    bottom: -340px;
+    /* border: 2px solid red; */
     width: 100%;
 }
 

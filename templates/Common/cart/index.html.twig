@@ -53,6 +53,9 @@
 
 		<div class="text-right mb-5">
 			<b>Total du panier : {{ cart.total }} €</b><br>
+			
+			<b>Nombre d'articles : {{ cart.totalQ }} </b><br>
+			
 		</div>
                 
                
@@ -69,7 +72,7 @@
 
 		{% else %}
 		<span>
-			<a class="btn btn-info btn-block mt-3" href="{{ path ('app_login')}}">Merci de vous connecter pour pouvoir valider votre panier</a>
+			<a class="btn btn-info btn-block mt-3" href="{{ path ('app_login')}}">Se Connecter</a>
 		</span>
 		{% endif %}
 		<br>
