@@ -53,19 +53,31 @@ class CartService
 
         // Put in variable stock of article 
         $stock = $cart['elements'][$articleId]["article"]->getStock(); 
-
-        // Recover total cart
-        $cart['total'] = $cart['total'] + $article->getPrix();
-
-        // Add total quantity
-        $cart['totalQ'] = $cart['totalQ'] + 1;
  
         // Check up : the quantity should not be greater than stock :
         // Otherwise the quantity cannot be higher than available stock
+        // The totalCart and totalQ cannot add 
         if($quantity < $stock) {
+
             $cart['elements'][$articleId]['quantity'] = $cart['elements'][$articleId]['quantity'] + 1;
+
+            // Recover total cart
+            $cart['total'] = $cart['total'] + $article->getPrix();
+
+            // Add total quantity
+            $cart['totalQ'] = $cart['totalQ'] + 1;
+
         }else{
+
+            
             $cart['elements'][$articleId]['quantity'] = $cart['elements'][$articleId]['quantity'];
+
+            // Recover total cart
+            $cart['total'] = $cart['total'];
+
+            // Add total quantity
+            $cart['totalQ'] = $cart['totalQ'];
+         
         }
         
         // Set a sessioninterface with $cart

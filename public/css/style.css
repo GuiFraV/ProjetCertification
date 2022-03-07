@@ -196,7 +196,7 @@ a:link
 
 footer{
     position: absolute;
-    bottom: -340px;
+    bottom: -140px;
     /* border: 2px solid red; */
     width: 100%;
 }
@@ -263,3 +263,31 @@ footer{
     width: 75px;
     height:75px;
 }
+
+.emoji{
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    justify-content: center; 
+    font-size:100px
+}
+
+.emoji:hover {
+    transform: scale(1) translatey(-20px);
+    text-shadow: 0 20px 20px rgba(0,0,0,.3);
+}
+
+.emoji--crying:before {
+    content: '😥';
+}
+  
+.emoji--crying:hover:before {
+    content: '😰';
+}
+
+#back_catalog{
+    outline: none;
+    text-decoration: none;
+}
+
+

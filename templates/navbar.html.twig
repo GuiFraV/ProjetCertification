@@ -19,18 +19,6 @@
 					</li>
 				
 
-					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) == false %}
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
-						</li>
-
-					{% endif %}
-
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('catalog_index') }}">Catalogue</a>
 					</li>
@@ -40,6 +28,19 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('cgv') }}">CGU/CGV</a>
 					</li>
+
+					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) == false %}
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
+						</li>
+			
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
+						</li>
+
+					{% endif %}
+
 
 
 					{% if is_granted('ROLE_ADMIN') %}
