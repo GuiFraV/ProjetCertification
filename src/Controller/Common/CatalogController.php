@@ -3,8 +3,13 @@
 namespace App\Controller\Common;
 
 // Utilisation de l'entité User pour la liste dans la BDD
+
+use App\Classe\Search;
+use Symfony\Component\HttpFoundation\Request;
+
 use App\Entity\Article;
 
+use App\Form\User\SearchFormType;
 // Utilisation d' ArticleRepository pour récupérer la liste et pour afficher les Details
 use App\Repository\ArticleRepository;
 
@@ -36,13 +41,25 @@ class CatalogController extends AbstractController
     /**
      * @Route("/", name="catalog_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+        $search = new Search();
+        $form = $this->createForm(SearchFormType::class, $search);
+        $form->handleRequest($request);
+
+        // dd($search);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $article = $articleRepository->findWithSearch($search);
+        
+        }
        
         // Affiche la vue 'catalog/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de toutes les articles en base de données
         return $this->render('Common/catalog/index.html.twig', [
             'articles' => $articleRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 

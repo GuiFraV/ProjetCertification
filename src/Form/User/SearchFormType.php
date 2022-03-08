@@ -1,31 +1,57 @@
 <?php
+
 namespace App\Form\User;
 
+use App\Classe\Search;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-
-
 class SearchFormType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('string', TextType::class,[
-                'label' => 'Rechercher',
+            ->add('string', TextType::class, [
+                'label' => false,
                 'required' => false,
-                'attr' => [
-                    'placeholder' => 'Votre recherche ...'
+                "attr" => [
+                    'placeholder' => "Votre recherche ..",
+                    'class' => 'form-control-sm'
                 ]
-                ]);
-        ;
+            ])
+                
+            ->add('Categorie', EntityType::class, [
+                'label' => false,
+                'required' => false,
+                'class' => Categorie::class,
+                'multiple' => true,
+                'expanded' => true,
+                'mapped' => false,
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Filtrer',
+                'attr' => [
+                    'class' => 'btn-block btn-info'
+                ]
+            ]);
+
     }
+
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'data_class' => Search::class,
+            'method' => 'GET',
+            'crsf_protection' => false
+        ]);
     }
 
     public function getBlockPrefix()
@@ -33,5 +59,5 @@ class SearchFormType extends AbstractType
         return '';
     }
 
-
+    
 }
