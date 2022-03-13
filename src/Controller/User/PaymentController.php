@@ -22,9 +22,9 @@ class PaymentController extends AbstractController
     /**
      * @Route("/payment", name="payment_index")
      */
-    public function index(PaymentService $paymentService): Response
+    public function index(PaymentService $paymentService, CartService $cartService): Response
     {
-        
+        $cart = $cartService->get();
         // 1.Création d'une session chez Stripe
         $sessionId = $paymentService->create();
         // 2.Créer un objet à partir du Payment Request en précisant la date et la session chez stripe
@@ -37,7 +37,8 @@ class PaymentController extends AbstractController
         $entityManager->flush();
 
         return $this->render('User/payment/index.html.twig', [
-            'sessionId' => $sessionId
+            'sessionId' => $sessionId,
+            'cart' => $cart
         ]);
     }
 
@@ -46,6 +47,8 @@ class PaymentController extends AbstractController
      */
     public function success(string $stripeSessionId, PaymentRequestRepository $paymentRequestRepository, CartService $cartService, ArticleRepository $ar, EntityManagerInterface $em): Response
     {
+
+        $cart = $cartService->get();
 
         $paymentRequest = $paymentRequestRepository->findOneBy([
             'stripeSessionId' => $stripeSessionId
@@ -123,7 +126,9 @@ class PaymentController extends AbstractController
 
         $cartService->clear();
 
-        return $this->render('User/payment/success.html.twig');
+        return $this->render('User/payment/success.html.twig', [
+            'cart' => $cart
+        ]);
     }
 
     /**

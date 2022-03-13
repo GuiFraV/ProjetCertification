@@ -3,7 +3,9 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+
+<div class="container" style="height: 67vh;">
+    <h1>Votre profil</h1>
 
     <table class="table">
         <tbody>
@@ -14,7 +16,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('profile_edit') }}">edit</a>
+    <a href="{{ path('profile_edit') }}">Modifier mon email</a><br/>
+    <a href="{{ path ('app_forgot_password_request') }}" >Modifier mon mot de passe </a>    
 
+</div>
     
 {% endblock %}

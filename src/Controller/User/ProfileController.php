@@ -3,6 +3,8 @@
 namespace App\Controller\User;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
+use App\Service\CartService;
+
 // Utilisation du modèle du formulaire pour la création de User et la lister
 use App\Form\Seller\User1Type;
 // Utilisation de UserRepository pour récupérer la liste et pour afficher les Details
@@ -27,21 +29,24 @@ class ProfileController extends AbstractController
     /**
      * @Route("/", name="profile_show", methods={"GET"})
      */
-    public function show(): Response
+    public function show(CartService $cartService): Response
     {
+        $cart = $cartService->get();
         // création d'une variable user de l'utilisateur connecté
         $user = $this->getUser();
         // Affiche la vue 'profile/show.html.twig' avec la variable TWIG 'user'
         return $this->render('User/profile/show.html.twig', [
             'user' => $user,
+            'cart' => $cart
         ]);
     }
 
     /**
      * @Route("/edit", name="profile_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, CartService $cartService): Response
     {
+        $cart = $cartService->get();
         // création d'une variable user de l'utilisateur connecté
         $user = $this->getUser();
         // Je créer la variable form dans laquelle je créer un formulaire à partir du modèle User1Type
@@ -62,6 +67,7 @@ class ProfileController extends AbstractController
         return $this->renderForm('User/profile/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+            'cart' => $cart
         ]);
     }
 

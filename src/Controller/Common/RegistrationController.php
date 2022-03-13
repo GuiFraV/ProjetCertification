@@ -3,6 +3,8 @@
 namespace App\Controller\Common;
 // Utilisation de l'entité User pour la liste dans la BDD
 use App\Entity\User;
+use App\Service\CartService;
+
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 use Symfony\Component\Mime\Address;
@@ -42,8 +44,9 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, CartService $cartService): Response
     {
+        $cart = $cartService->get();
         // Je créer une variable user dans laquelle j'appel la fonction constructeur de la classe paiement (instanciation)
         $user = new User();
         // Je créer la variable form dans laquelle je créer un formulaire à partir du modèle de RegistrationType
@@ -94,6 +97,7 @@ class RegistrationController extends AbstractController
         // Retourne la vue 'registration/register.html.twig'
         return $this->render('Common/registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'cart' => $cart
         ]);
     }
 

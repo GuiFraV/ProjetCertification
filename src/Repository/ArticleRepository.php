@@ -36,7 +36,6 @@ class ArticleRepository extends ServiceEntityRepository
                 ->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $search->categories);
             }
-
             return $query->getQuery()->getResult();
     }
 

@@ -1,36 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Mes Articles - SummerField{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+<main class="container" style="height: 67vh;">
+    <h1>Mes Articles</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Image</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Stock</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
                 <td>
-                    <img  class ="w-25" src="{{ asset('uploads/' ~ article.imageFileName) }}"/>
+                    <img  style="width: 80px;" src="{{ asset('uploads/' ~ article.imageFileName) }}"/>
                 </td>
                 <td>{{ article.nom }}</td>
                 <td>{{ article.description }}</td>
                 <td>{{ article.prix }}</td>
                 <td>{{ article.stock }}</td>
-                <td>
-                    <a href="{{ path('seller_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('seller_article_edit', {'id': article.id}) }}">edit</a>
+                <td style ="border: 1px soldi black;">
+                    <div style ="border: 1px solid black;">
+                        <a href="{{ path('seller_article_edit', {'id': article.id}) }}">Modifier</a>
+                        {{ include('Seller/seller_article/_delete_form.html.twig') }}
+                    </div>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +42,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('seller_article_new') }}">Create new</a>
+    <a href="{{ path('seller_article_new') }}">Ajouter</a>
+</main>
 {% endblock %}

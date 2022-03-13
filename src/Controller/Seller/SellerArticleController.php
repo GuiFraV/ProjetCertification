@@ -80,21 +80,6 @@ class SellerArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="seller_article_show", methods={"GET"})
-     */
-    public function show(Article $article, Request $request): Response
-    {
-        if($article->getAuteur() == $this->getUser()){
-        // Retourne la vue 'seller_article" pour l'article correspondant
-            return $this->render('Seller/seller_article/show.html.twig', [
-                'article' => $article,
-            ]);
-        }else{
-            return $this->redirectToRoute('seller_article_index');
-        }
-    }
-
-    /**
      * @Route("/{id}/edit", name="seller_article_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response

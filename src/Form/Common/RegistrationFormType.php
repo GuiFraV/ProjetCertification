@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -23,8 +24,8 @@ class RegistrationFormType extends AbstractType
             ->add('role', ChoiceType::class,[
                 'mapped' => false,
                 'choices' => [
-                    'Cueilleur' => 'ROLE_USER',
-                    'Récolteur' => 'ROLE_SELLER',
+                    'Client' => 'ROLE_USER',
+                    'Vendeur' => 'ROLE_SELLER',
                 ]
             ])
             ->add('email', TextType::class)
@@ -36,11 +37,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passes ne correspondent pas ',
+                'required' => true,
+                'first_options' => ['label' => 'Mot de passe ( Doit contenir au moins 8 caractères, 1 lettre en majuscule, 1 chiffre et 1 caractère spécial )'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                // 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -49,11 +55,11 @@ class RegistrationFormType extends AbstractType
                         'min' => 8,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 20,
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
-                        'message' => 'Le mot de passe doit contenir 8 caractères au moins, au moins 1 lettre, 1 chiffre et 1 caractère spécial',
+                        'message' => 'Le mot de passe doit contenir au moins 8 caractères, au moins 1 lettre en majuscule, 1 chiffre et 1 caractère spécial',
                         ])
 
                     

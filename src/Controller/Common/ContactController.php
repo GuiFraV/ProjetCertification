@@ -3,6 +3,8 @@
 namespace App\Controller\Common;
 // Utilisation du modèle du formulaire pour la création de Contact et la lister
 use App\Form\Common\ContactType;
+use App\Service\CartService;
+
 use App\Service\EmailService;
 use App\Service\RememberService;
 // Utilisation du Request pour trouver les informations saisies par l'utilisateur
@@ -19,8 +21,9 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, EmailService $emailService, RememberService $rememberService): Response
+    public function index(Request $request, EmailService $emailService, RememberService $rememberService, CartService $cartService): Response
     {
+        $cart = $cartService->get();
         // Je créer la variable form dans laquelle je créer un formulaire à partir du modèle ContactType
         // Le form devra remplir $user
         $form = $this->createForm(ContactType::class, [
@@ -65,12 +68,14 @@ class ContactController extends AbstractController
             return $this->render('Common/contact/success.html.twig', [
                 'prenom' => $prenom,
                 'email' => $email,
+                
             ]);
 
         }else{
             // Sinon retourne la vue 'contact/index.html.twig' et affiche le formualire contenue dans la variable TWIG 'formulaireContact'
             return $this->renderForm('Common/contact/index.html.twig', [
                 'formulaireContact' => $form,
+                'cart' => $cart
             ]);
 
         }

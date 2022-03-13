@@ -3,11 +3,13 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
+<main class="container" style="height: 67vh;">
     <h1>Edit User</h1>
 
     {{ include('User/profile/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('profile_show') }}">back to profile</a>
+</main>
 
  
 {% endblock %}

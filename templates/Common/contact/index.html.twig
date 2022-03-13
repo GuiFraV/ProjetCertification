@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact - SummerField{% endblock %}
 
 {% block body %}
 
-<main class="container">
+<main class="container" style="height: 67vh;">
 
     <h1 class="text-center">Page de Contact</h1>
 
@@ -17,6 +17,7 @@
         {{form_row(formulaireContact.Envoyer, { 'attr' : {'class': 'btn-success'} })}}
     {{form_end(formulaireContact)}}
 
+    <br><br>
 </main>
 
 {% endblock %}

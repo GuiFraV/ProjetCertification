@@ -59,6 +59,7 @@ class CartService
         // The totalCart and totalQ cannot add 
         if($quantity < $stock) {
 
+
             $cart['elements'][$articleId]['quantity'] = $cart['elements'][$articleId]['quantity'] + 1;
 
             // Recover total cart

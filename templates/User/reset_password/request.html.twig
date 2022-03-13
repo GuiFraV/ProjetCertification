@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container" style="height: 67vh;">
 
         {% for flashError in app.flashes('reset_password_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
@@ -15,7 +15,7 @@
         {{ form_row(requestForm.email) }}
             <div>
                 <small>
-                   Veuillez entrer votre email et nous vous enverrons un liens pour réinitialiser votre mot de passe &#128512;
+                   Veuillez entrer votre email et nous vous enverrons un lien pour réinitialiser votre mot de passe &#128512;
                 </small>
             </div>
 

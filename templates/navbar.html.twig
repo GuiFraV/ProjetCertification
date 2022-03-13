@@ -13,35 +13,11 @@
 				<ul class="navbar-nav mr-auto ">
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('home') }}">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('contact') }}">Contact</a>
-					</li>
-				
+					</li>				
 
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('catalog_index') }}">Catalogue</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('cart_index') }}">Panier</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path ('cgv') }}">CGU/CGV</a>
-					</li>
-
-					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) == false %}
-
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
-						</li>
-			
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
-						</li>
-
-					{% endif %}
-
-
 
 					{% if is_granted('ROLE_ADMIN') %}
 
@@ -84,16 +60,16 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 								<li>
-									<a class="dropdown-item" href="/seller/article">Gestion Articles</a>
+									<a class="dropdown-item" href="/seller/article">Mes Articles</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="/seller/detail/commande">Gestion Commande </a>
+									<a class="dropdown-item" href="/seller/detail/commande">Mes Ventes réalisées </a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="/seller/detail/commande"> Détails Commande</a>
+									<a class="dropdown-item" href="/seller/detail/commande"> Détails Commandes passées</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href={{path ('seller_payment_request_index')}}>Détails Paiements</a>
+									<a class="dropdown-item" href={{path ('seller_payment_request_index')}}>Détails Paiements reçu</a>
 								</li>
 							
 							</ul>
@@ -101,18 +77,42 @@
 
 					{% endif %}
 
-					{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) %}
-
-						<li class="nav-item">
-							<a class="nav-link" href="/profile"> Profil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path  ('app_logout') }}">Logout</a>
-						</li>
-					
-					{% endif %}
-
 				</ul>
+
+				    <span class="navbar-text">
+
+						<div class=" navbar-nav row">
+
+						{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER')) == false %}
+
+							<a class="nav-link" href="{{ path ('cart_index') }}">{{cart.totalQ}}<i class="fa-solid fa-cart-shopping"></i></a>
+
+						{% endif %}
+
+
+							{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) == false %}
+
+								
+								<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
+														
+								<a class="nav-link" href="{{ path ('app_register') }}">Inscription</a>
+						
+
+							{% endif %}
+
+							{% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_SELLER') or is_granted('ROLE_USER')) %}
+
+								
+								<a class="nav-link" href="/profile"> <i class="fa-solid fa-user"></i></a>		
+						
+								<a class="nav-link" href="{{ path  ('app_logout') }}">Logout</a>
+						
+					
+							{% endif %}
+
+						</div>
+
+					</span>
 			</div>
 		</nav>
 	<main>

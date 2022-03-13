@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DetailCommande index{% endblock %}
+{% block title %}Detail des Commandes - SummerField{% endblock %}
 
 {% block body %}
-    <h1>DetailCommande index</h1>
+
+<main class="container">
+
+    <h1>Detail des Commandes : </h1>
+
+    <br>
 
     <table class="table">
         <thead>
@@ -29,5 +34,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_detail_commande_new') }}">Create new</a>
+    <a href="{{ path('admin_detail_commande_new') }}">Créer</a>
+
+    <br><br>
+</main>
 {% endblock %}

@@ -3,5 +3,70 @@
 {% block title %}Hello PaymentController!{% endblock %}
 
 {% block body %}
+
+<main class="container" >
+
     <h1> Félicitation, vous avez payé !</h1>
+
+    <p>Récapitulatif de votre commande : </p><br><bt>
+
+ 		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Produit</th>
+					<th scope="col"></th>
+					<th scope="col" class="text-center">Quantité</th>
+					<th scope="col" class="text-center">Prix</th>
+					<th scope="col" class="text-center">Total</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				{% for element in cart.elements %}
+
+					<tr>
+						<th scope="row">
+							<img class="imgcart" src="{{ asset ('uploads/' ~ element.article.imageFileName)}} " alt="{{element.article.nom}}"/>
+						</th>
+						<th>
+							{{ element.article.description }}<br>
+							<small>{{ element.article.informations }}</small>
+						</th>
+						<td class="text-center">{{ element.quantity }}</td>
+						<td class="text-center">{{ element.article.prix }} €</td>
+						<td class="text-center">{{ element.article.prix * element.quantity }} €</td>
+						<td class="text-center"></td>
+					</tr>
+					
+				{% endfor %}
+
+			</tbody>
+
+            <tfoot class="thead-dark mb-5">
+				<tr>
+					<th scope="col">Total : {{cart.total}} €</th>
+					<th scope="col"></th>
+					<th scope="col" class="text-center"></th>
+					<th scope="col" class="text-center"></th>
+					<th scope="col" class="text-center"></th>
+					<th scope="col"></th>
+				</tr>
+			</tfoot>
+
+		</table>
+
+         <button type="button" onclick="imprimer_page()" class="btn btn-outline-dark">Imprimer votre ticket de caisse</button>
+
+</main>
+
+<script type="text/javascript">
+    function imprimer_page(){
+    window.print();
+    }
+</script>
+
+<br><br>
+
 {% endblock %}

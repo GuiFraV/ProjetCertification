@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DetailCommande{% endblock %}
+{% block title %}Detail des Commandes - SummerField{% endblock %}
 
 {% block body %}
+<main class="container" style="height: 67vh;">
     <h1>DetailCommande</h1>
 
     <table class="table">
@@ -19,4 +20,5 @@
     <a href="{{ path('admin_detail_commande_edit', {'id': detail_commande.id}) }}">edit</a>
 
     {{ include('Admin/admin_detail_commande/_delete_form.html.twig') }}
+</main>
 {% endblock %}

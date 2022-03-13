@@ -2,17 +2,21 @@
 
 namespace App\Controller\Common;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PageInfoPersonnelController extends AbstractController
 {
     /**
      * @Route("/page/info/personnel", name="page_info_personnel")
      */
-    public function index(): Response
+    public function index(CartService $cartService): Response
     {
-        return $this->render('Common/page_info_personnel/index.html.twig');
+        $cart = $cartService->get();
+        return $this->render('Common/page_info_personnel/index.html.twig', [
+            'cart' => $cart
+        ]);
     }
 }

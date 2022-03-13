@@ -15,12 +15,29 @@ class CartController extends AbstractController
      */
     public function index(CartService $cartService): Response
     {
+        $user = $this->getUser();
+
         $cart = $cartService->get();
+        
         // dd($cart["elements"][1]["article"]->getimageFilename());
         return $this->render('Common/cart/index.html.twig', [
             'controller_name' => 'CartController',
+            'cart' => $cart,
+            'user' => $user
+        ]);
+       
+
+    }
+
+    public function navbarNotification(CartService $cartService): Response
+    {
+        $cart = $cartService->get();
+        
+        // dd($cart["elements"][1]["article"]->getimageFilename());
+        return $this->render('nav.html.twig', [
             'cart' => $cart
         ]);
+       
 
     }
 

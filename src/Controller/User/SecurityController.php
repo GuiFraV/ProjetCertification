@@ -3,6 +3,8 @@
 namespace App\Controller\User;
 // Utilisation de l'abstract controller pour les méthodes qui sont héritées : par exemple, render, renderForm, createFrom etc.
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
+
 // Utilisation du Response juste pour définir que les fonctions liées aux routes vont retournées une réponse au navigateur 
 use Symfony\Component\HttpFoundation\Response;
 // Utilisation du Route comme annotation pour rendre accessible une fonction par un client (ex: navigateur)
@@ -15,11 +17,13 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, CartService $cartService): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
+
+        $cart = $cartService->get();
 
         // get the login error if there is one
         // Variable qui permet de sécuriser le login lorsque celui-ci n'a pas de correspondance
@@ -29,7 +33,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         // Affiche la vue 'security/login.html.twig' avec la variable $lastUsername en cas de connexion et la variable $error en cas d'erreur de login. 
-        return $this->render('User/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('User/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'cart' => $cart]);
     }
 
     /**

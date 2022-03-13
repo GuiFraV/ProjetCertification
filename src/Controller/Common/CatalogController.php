@@ -5,6 +5,8 @@ namespace App\Controller\Common;
 // Utilisation de l'entité User pour la liste dans la BDD
 
 use App\Classe\Search;
+use App\Service\CartService;
+
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Article;
@@ -41,39 +43,50 @@ class CatalogController extends AbstractController
     /**
      * @Route("/", name="catalog_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository, Request $request): Response
+    public function index(ArticleRepository $articleRepository, Request $request, CartService $cartService): Response
     {
+        $cart = $cartService->get();
+
         $search = new Search();
+
         $form = $this->createForm(SearchFormType::class, $search);
+
         $form->handleRequest($request);
 
-        // dd($search);
 
         if($form->isSubmitted() && $form->isValid())
         {
             $article = $articleRepository->findWithSearch($search);
         
+        }else{
+
+            $article = $articleRepository->findAll();
+
         }
        
         // Affiche la vue 'catalog/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de toutes les articles en base de données
         return $this->render('Common/catalog/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $article,
             'form' => $form->createView(),
+            'cart' => $cart
         ]);
     }
 
     /**
      * @Route("/{id}", name="catalog_show", methods={"GET"})
      */
-    public function show(Article $article): Response
+    public function show(Article $article,CartService $cartService): Response
     {
+        $cart = $cartService->get();
+        
         $products = $this->entityManager->getRepository(Article::class)->findByisBest(1);
 
         // Retourne la vue 'catalog/show.html.twig" pour l'article correspondant
         return $this->render('Common/catalog/show.html.twig', [
             'article' => $article,
-            'articles' => $products
+            'articles' => $products,
+            'cart' => $cart
         ]);
     }
 
