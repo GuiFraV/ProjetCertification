@@ -3,45 +3,62 @@
 {% block title %}Mes Articles - SummerField{% endblock %}
 
 {% block body %}
-<main class="container" style="height: 67vh;">
+
+
+
+<main class="container">
+
     <h1>Mes Articles</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>
-                    <img  style="width: 80px;" src="{{ asset('uploads/' ~ article.imageFileName) }}"/>
-                </td>
-                <td>{{ article.nom }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.prix }}</td>
-                <td>{{ article.stock }}</td>
-                <td style ="border: 1px soldi black;">
-                    <div style ="border: 1px solid black;">
-                        <a href="{{ path('seller_article_edit', {'id': article.id}) }}">Modifier</a>
-                        {{ include('Seller/seller_article/_delete_form.html.twig') }}
-                    </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% if user.isVerified == true %}
 
-    <a href="{{ path('seller_article_new') }}">Ajouter</a>
+        <table class="table seller">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th >Nom</th>
+                    <th >Description</th>
+                    <th>Prix</th>
+                    <th class="text-center">Stock</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>
+                        <img id="imgSellerArticle" src="{{ asset('uploads/' ~ article.imageFileName) }}"/>
+                    </td>
+                    <td>{{ article.nom }}</td>
+                    <td>{{ article.description }}</td>
+                    <td>{{ article.prix }} €</td>
+                    <td class="text-center">{{ article.stock }}</td>
+                    <td>
+                        <div id="editSellerBtn" >
+                            <a class="text-center btn btn-outline-info btn-sm mb-2" href="{{ path('seller_article_edit', {'id': article.id}) }}">Modifier</a>
+                            {{ include('Seller/seller_article/_delete_form.html.twig') }}
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Vous n'avez pas d'articles en ce moment</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <hr>
+
+        <a class="text-center btn btn-success btn-block" href="{{ path('seller_article_new') }}">Ajouter</a>
+
+    {% else %}
+
+    <p>Pour pouvoir accéder à cette section, merci de confirmer votre mail. </p>
+
+    {% endif %}
+    
 </main>
+
+<br><br>
 {% endblock %}

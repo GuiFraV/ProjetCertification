@@ -291,3 +291,15 @@ footer{
 }
 
 
+/* Seller edit  */
+
+#editSellerBtn{
+    display: flex;
+    flex-direction: column;
+}
+
+#imgSellerArticle {
+    width: 80px; 
+    min-height: 90px; 
+    max-height: 90px"
+}

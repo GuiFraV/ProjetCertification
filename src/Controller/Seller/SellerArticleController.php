@@ -30,12 +30,14 @@ class SellerArticleController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
+        $user = $this->getUser();
         // Affiche la vue 'seller_article/index.html.twig' avec une variable TWIG 'articles'
         // qui pointe vers la liste de tous les articles en base de données
         return $this->render('Seller/seller_article/index.html.twig', [
             'articles' => $articleRepository->findBy([
                 'auteur' => $this->getUser()
             ]),
+            'user' => $user
         ]);
     }
 

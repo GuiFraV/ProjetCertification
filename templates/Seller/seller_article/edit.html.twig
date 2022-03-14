@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}Modification {% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
 
-    {{ include('Seller/seller_article/_form.html.twig', {'button_label': 'Update'}) }}
+<main class="container">
 
-    <a href="{{ path('seller_article_index') }}">back to list</a>
+    <h1>Modifier Mon Article</h1>
+    <hr>
 
-    {{ include('Seller/seller_article/_delete_form.html.twig') }}
+    {{ include('Seller/seller_article/_form.html.twig', {'button_label': 'Mettre à jour'}) }} <br>
+
+    <a class="btn btn-outline-warning btn-block" href="{{ path('seller_article_index') }}">Retourner en arrière</a> <br>
+
+    {{ include('Seller/seller_article/_delete_form.html.twig') }}<br>
+
+</main>
+
+<br><br>
+
 {% endblock %}
