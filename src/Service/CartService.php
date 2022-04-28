@@ -23,7 +23,7 @@ class CartService
 
         // Return of cart session interface with 
         // elements contain an array
-        // total and totalQ contain an integer at 0
+        // total is float and totalQ contain an integer at 0
         return $this->sessionInterface->get('cart',[
             'elements' => [],
             'total' => 0.0,
@@ -59,7 +59,6 @@ class CartService
         // The totalCart and totalQ cannot add 
         if($quantity < $stock) {
 
-
             $cart['elements'][$articleId]['quantity'] = $cart['elements'][$articleId]['quantity'] + 1;
 
             // Recover total cart
@@ -69,8 +68,7 @@ class CartService
             $cart['totalQ'] = $cart['totalQ'] + 1;
 
         }else{
-
-            
+-      
             $cart['elements'][$articleId]['quantity'] = $cart['elements'][$articleId]['quantity'];
 
             // Recover total cart

@@ -1,0 +1,39 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title 'Bienvenue sur le Dashboard de SummerField !' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 alert-info">
+
+            <span class="display-3">{{allUser['value']}} </span> Utilisateurs inscrits
+        
+        </div>
+
+        <div class="col-6 alert-success">
+
+             <span class="display-3">{{allArticle['value']}}</span> Articles disponible
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-6 alert-warning">
+            <span class="display-3">{{allCommande['value']}}</span> Commandes passées
+        
+        </div>
+
+        <div class="col-6 alert-dark">
+             <span class="display-3">100%</span> de clients satisfaits
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
